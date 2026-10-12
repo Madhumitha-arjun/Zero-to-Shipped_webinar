@@ -1,0 +1,467 @@
+/* ------------------------------------------------------------------
+   0 to Shipped — Resume Parser
+   One theme, driven by custom properties on :root. Change a colour here
+   and it changes everywhere.
+   ------------------------------------------------------------------ */
+
+:root {
+  --bg:       #0b1020;
+  --bg-soft:  #121933;
+  --card:     #161d38;
+  --card-2:   #1b2344;
+  --line:     #2a3360;
+  --text:     #eef1ff;
+  --muted:    #9aa3c7;
+  --brand:    #6c8bff;
+  --brand-2:  #9f6cff;
+  --yes:      #3ddc97;
+  --no:       #ff7a7a;
+  --radius:   16px;
+  --shadow:   0 18px 40px rgba(4, 8, 24, 0.55);
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; }
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(900px 500px at 15% -10%, rgba(108, 139, 255, 0.20), transparent 60%),
+    radial-gradient(800px 500px at 90% 0%, rgba(159, 108, 255, 0.16), transparent 55%),
+    var(--bg);
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+}
+
+/* ---------------------------------------------------------------- header */
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 22px 24px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--brand), var(--brand-2));
+  color: var(--bg);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.header-link {
+  color: var(--muted);
+  font-size: 14px;
+  text-decoration: none;
+}
+.header-link:hover { color: var(--text); }
+
+/* ------------------------------------------------------------ layout */
+
+main {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px 64px;
+}
+
+/* -------------------------------------------------------------- hero */
+
+.hero {
+  padding: 40px 0 8px;
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: var(--brand);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  margin: 0 0 14px;
+  font-size: clamp(30px, 5.2vw, 52px);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.lede {
+  max-width: 520px;
+  margin: 0 auto;
+  color: var(--muted);
+  font-size: 17px;
+}
+
+/* ------------------------------------------------------------ upload */
+
+.upload-card {
+  max-width: 620px;
+  margin: 36px auto 0;
+  padding: 22px;
+  background: linear-gradient(180deg, var(--card), var(--bg-soft));
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.dropzone {
+  display: grid;
+  place-items: center;
+  gap: 4px;
+  padding: 38px 20px;
+  border: 2px dashed var(--line);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: border-color .18s, background .18s, transform .18s;
+}
+
+.dropzone:hover,
+.dropzone:focus-visible {
+  border-color: var(--brand);
+  background: rgba(108, 139, 255, 0.07);
+  outline: none;
+}
+
+/* the class JS adds while a file is over the zone */
+.dropzone.is-dragging {
+  border-color: var(--brand);
+  background: rgba(108, 139, 255, 0.13);
+  transform: scale(1.01);
+}
+
+.dropzone-icon {
+  width: 34px;
+  height: 34px;
+  color: var(--brand);
+}
+
+.dropzone-title { margin: 8px 0 0; font-weight: 600; }
+.dropzone-sub   { margin: 0; color: var(--muted); font-size: 14px; }
+.link-look      { color: var(--brand); text-decoration: underline; }
+
+.field {
+  display: block;
+  margin-top: 16px;
+  text-align: left;
+}
+
+.field-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+select {
+  width: 100%;
+  padding: 11px 12px;
+  color: var(--text);
+  background: var(--card-2);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font: inherit;
+}
+select:focus-visible { outline: 2px solid var(--brand); outline-offset: 1px; }
+
+.file-error {
+  margin: 14px 0 0;
+  padding: 10px 12px;
+  color: #ffc9c9;
+  background: rgba(255, 122, 122, 0.12);
+  border: 1px solid rgba(255, 122, 122, 0.4);
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+/* ----------------------------------------------------------- results */
+
+.results { margin-top: 56px; }
+
+.results-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.result-file {
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  word-break: break-all;
+}
+
+.ghost-btn {
+  flex: none;
+  padding: 9px 14px;
+  color: var(--text);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+.ghost-btn:hover { border-color: var(--brand); color: #fff; }
+
+.results-grid {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 18px;
+}
+
+.score-card,
+.skills-card {
+  padding: 24px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.score-card { text-align: center; }
+
+/*
+  The ring is one element with a conic-gradient background. --score is a
+  plain number 0-100; JS animates it and the gradient repaints itself.
+  No SVG, no canvas.
+*/
+.score-ring {
+  --score: 0;
+  display: grid;
+  place-items: center;
+  width: 172px;
+  height: 172px;
+  margin: 4px auto 14px;
+  border-radius: 50%;
+  background: conic-gradient(
+    var(--brand) calc(var(--score) * 1%),
+    rgba(255, 255, 255, 0.07) 0
+  );
+  transition: background .5s ease;
+}
+
+.score-inner {
+  display: grid;
+  place-items: center;
+  width: 138px;
+  height: 138px;
+  border-radius: 50%;
+  background: var(--card);
+}
+
+.score-value {
+  font-size: 46px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.score-out  { color: var(--muted); font-size: 13px; }
+.score-verdict { margin: 0 0 6px; font-weight: 600; }
+.score-meta { margin: 0; color: var(--muted); font-size: 13px; }
+
+.skills-card {
+  display: grid;
+  gap: 22px;
+  align-content: start;
+}
+
+.skills-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 12px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.dot { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+.dot-yes { background: var(--yes); }
+.dot-no  { background: var(--no); }
+
+.badge {
+  margin-left: auto;
+  padding: 1px 9px;
+  color: var(--muted);
+  background: var(--card-2);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+.chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chip {
+  padding: 6px 12px;
+  background: var(--card-2);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 13px;
+}
+
+.chip-yes   { color: #b6f3d8; border-color: rgba(61, 220, 151, 0.45); }
+.chip-no    { color: #ffcdcd; border-color: rgba(255, 122, 122, 0.40); }
+.chip-empty { color: var(--muted); border-style: dashed; }
+
+.disclaimer {
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+}
+
+/* -------------------------------------------------------- how it works */
+
+.how { margin-top: 72px; }
+
+.how h2 {
+  margin: 0 0 18px;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.steps li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  color: var(--muted);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  font-size: 14px;
+}
+
+.steps span {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  flex: none;
+  color: var(--bg);
+  background: linear-gradient(135deg, var(--brand), var(--brand-2));
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* ------------------------------------------------------------- footer */
+
+.site-footer {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 26px 24px 40px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+}
+.site-footer p { margin: 0; }
+
+/* ------------------------------------------------------------- loader */
+
+.loader {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(6, 9, 22, 0.72);
+  backdrop-filter: blur(3px);
+  z-index: 10;
+}
+
+.loader-box {
+  width: 260px;
+  padding: 24px;
+  text-align: center;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  margin: 0 auto 14px;
+  border: 3px solid rgba(255, 255, 255, 0.12);
+  border-top-color: var(--brand);
+  border-radius: 50%;
+  animation: spin .8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.loader-step { margin: 0 0 12px; color: var(--muted); font-size: 14px; }
+
+.progress {
+  height: 6px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+}
+
+.progress-bar {
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--brand), var(--brand-2));
+  border-radius: 999px;
+  transition: width .25s ease;
+}
+
+/* --------------------------------------------------------- responsive */
+
+@media (max-width: 760px) {
+  .hero { padding-top: 20px; }
+  .results-grid { grid-template-columns: 1fr; }
+  .score-ring  { width: 150px; height: 150px; }
+  .score-inner { width: 120px; height: 120px; }
+  .score-value { font-size: 38px; }
+  .steps { grid-template-columns: 1fr; }
+}
+
+/* Respect a user who has asked for less motion. */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation-duration: .01ms !important;
+  }
+}

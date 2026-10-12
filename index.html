@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>0 to Shipped — Resume Parser</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#">
+      <span class="brand-mark">0&rarr;S</span>
+      <span class="brand-name">0 to Shipped</span>
+    </a>
+    <a class="header-link" href="#how">How it works</a>
+  </header>
+
+  <main>
+    <!-- ---------- hero + upload ---------- -->
+    <section class="hero">
+      <p class="eyebrow">Resume Parser</p>
+      <h1>Find out what your resume<br />is missing.</h1>
+      <p class="lede">
+        Upload your resume and get an instant score, the skills we found in it,
+        and the ones still missing for the role you're chasing.
+      </p>
+
+      <div class="upload-card">
+        <div id="dropzone" class="dropzone" tabindex="0" role="button"
+             aria-label="Choose a PDF resume to upload">
+          <svg class="dropzone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 16V4" />
+            <path d="m7 9 5-5 5 5" />
+            <path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" />
+          </svg>
+          <p class="dropzone-title">Drop your resume here</p>
+          <p class="dropzone-sub">or <span class="link-look">browse your files</span> &middot; PDF only</p>
+          <input id="file-input" type="file" accept="application/pdf,.pdf" hidden />
+        </div>
+
+        <label class="field">
+          <span class="field-label">Target role</span>
+          <select id="role-select">
+            <option value="fullstack">Full-Stack Developer</option>
+            <option value="frontend">Front-End Developer</option>
+            <option value="backend">Back-End Developer</option>
+            <option value="data">Data Engineer</option>
+          </select>
+        </label>
+
+        <p id="file-error" class="file-error" role="alert" hidden></p>
+      </div>
+    </section>
+
+    <!-- ---------- results ---------- -->
+    <section id="results" class="results" hidden aria-live="polite">
+      <div class="results-head">
+        <div>
+          <p class="eyebrow">Your report</p>
+          <h2 id="result-file" class="result-file"></h2>
+        </div>
+        <button id="reset-btn" class="ghost-btn" type="button">Try another</button>
+      </div>
+
+      <div class="results-grid">
+        <!-- score -->
+        <div class="score-card">
+          <div id="score-ring" class="score-ring">
+            <div class="score-inner">
+              <span id="score-value" class="score-value">0</span>
+              <span class="score-out">/ 100</span>
+            </div>
+          </div>
+          <p id="score-verdict" class="score-verdict"></p>
+          <p class="score-meta">
+            <span id="found-count">0</span> of <span id="total-count">0</span> skills matched
+            <br /><span id="role-name"></span>
+          </p>
+        </div>
+
+        <!-- skills -->
+        <div class="skills-card">
+          <div>
+            <h3 class="skills-title">
+              <span class="dot dot-yes"></span> Skills found
+              <span id="found-badge" class="badge">0</span>
+            </h3>
+            <ul id="found-list" class="chip-list"></ul>
+          </div>
+          <div>
+            <h3 class="skills-title">
+              <span class="dot dot-no"></span> Skills missing
+              <span id="missing-badge" class="badge">0</span>
+            </h3>
+            <ul id="missing-list" class="chip-list"></ul>
+          </div>
+        </div>
+      </div>
+
+      <p class="disclaimer">
+        Mock analysis for design preview — your PDF is never uploaded, and its
+        contents are not read.
+      </p>
+    </section>
+
+    <!-- ---------- how it works ---------- -->
+    <section id="how" class="how">
+      <h2>How it works</h2>
+      <ol class="steps">
+        <li><span>1</span> Drop a PDF of your resume.</li>
+        <li><span>2</span> We match its skills against your target role.</li>
+        <li><span>3</span> You get a score and what to add next.</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>0 to Shipped Resume Parser &middot; a The Dev Labs build</p>
+  </footer>
+
+  <!-- ---------- loading overlay ---------- -->
+  <div id="loader" class="loader" hidden>
+    <div class="loader-box">
+      <div class="spinner" aria-hidden="true"></div>
+      <p id="loader-step" class="loader-step">Reading PDF&hellip;</p>
+      <div class="progress"><div id="progress-bar" class="progress-bar"></div></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
